@@ -1,0 +1,20 @@
+   <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Name</th>
+          <th>Street</th>
+          <th>District</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for station in bus_stations %}
+        <tr>
+          <td>{{ station.number }}</td>
+          <td>{{ station.Name }}</td>
+          <td>{{ station.Street }}</td>
+          <td>{{ station.District }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
