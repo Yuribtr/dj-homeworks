@@ -17,9 +17,6 @@ def csv_to_dict(filename, delimiter=';', encoding='utf-8') -> (list, list):
         data_file.seek(0)
         csv.register_dialect('MyDialect', delimiter=delimiter)
         reader = csv.DictReader(data_file, dialect='MyDialect')
-        # result = []
-        # for item_dict in reader:
-        #     result.append({key: try_convert_to_float(value) for key, value in item_dict.items()})
         result = [item for item in reader]
     return result, columns
 

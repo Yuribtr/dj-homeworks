@@ -15,8 +15,3 @@ def make_float(value):
     except ValueError:
         result = value
     return result
-
-
-# @register.filter
-# def get_length(array):
-#     return len(array)
