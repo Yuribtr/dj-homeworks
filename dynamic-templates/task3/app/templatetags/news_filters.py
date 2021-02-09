@@ -64,6 +64,6 @@ def format_selftext(value, count):
     if not type(count) == int:
         return value
     text_list = value.split()
-    if len(text_list) <= count + 3:
+    if len(text_list) <= count * 2 + 3:
         return value
     return f'{" ".join(text_list[:count])} ... {" ".join(text_list[-count:])}'
