@@ -16,23 +16,10 @@ def book_view(request, dt):
     books = [*Book.objects.filter(pub_date=dt).order_by('pub_date').all()]
     if not books:
         return HttpResponseNotFound(settings.BOOK_NOT_FOUND_MSG)
-    prev = Book.objects.filter(pub_date__lt=dt).order_by('-pub_date').first()
-    next = Book.objects.filter(pub_date__gt=dt).order_by('pub_date').first()
-    prev_page_url = prev.pub_date if prev else ''
-    next_page_url = next.pub_date if next else ''
+    dates = Book.objects.values('pub_date').order_by('pub_date').distinct()
+    dates = [item['pub_date'] for item in dates]
+    pos = dates.index(dt)
+    prev_page_url = dates[pos-1] if pos > 0 else ''
+    next_page_url = dates[pos+1] if pos < len(dates)-1 else ''
     context = {'books': books, 'prev_page_url': prev_page_url, 'next_page_url': next_page_url}
     return render(request, template, context)
-#
-#
-# def book_view(request, dt):
-#     template = 'books/book.html'
-#     books = [*Book.objects.filter(pub_date=dt).order_by('pub_date').all()]
-#     if not books:
-#         return HttpResponseNotFound(settings.BOOK_NOT_FOUND_MSG)
-#     dates = Book.objects.values('pub_date').order_by('pub_date').distinct()
-#     dates = [item['pub_date'] for item in dates]
-#     pos = dates.index(dt)
-#     prev_page_url = dates[pos-1] if pos > 0 else ''
-#     next_page_url = dates[pos+1] if pos < len(dates)-1 else ''
-#     context = {'books': books, 'prev_page_url': prev_page_url, 'next_page_url': next_page_url}
-#     return render(request, template, context)

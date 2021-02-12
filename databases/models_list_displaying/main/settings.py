@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'books',
 ]
 
@@ -46,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 # Database
@@ -141,3 +143,4 @@ LOGGING = {
 
 FILES_DATE_PATTERN = '%Y-%m-%d'
 BOOK_NOT_FOUND_MSG = 'Книги не найдены'
+INTERNAL_IPS = ['127.0.0.1']
