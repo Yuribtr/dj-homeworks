@@ -1,0 +1,36 @@
+GET http://localhost:8000/api/v1/projects/
+
+###
+
+POST http://localhost:8000/api/v1/projects/
+
+{
+ "name": "Geoscan",
+ "latitude": "56",
+ "longitude": "30"
+}
+
+###
+
+PUT http://localhost:8000/api/v1/projects/7/
+
+{
+ "name": "Geoscan",
+ "latitude": "56",
+ "longitude": "30"
+}
+
+###
+
+PATCH http://localhost:8000/api/v1/projects/7/
+
+{
+ "name": "Geoscan_new",
+ "longitude": "33"
+}
+
+###
+
+DELETE http://localhost:8000/api/v1/projects/9/
+
+###

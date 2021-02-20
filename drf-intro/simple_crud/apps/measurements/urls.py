@@ -13,20 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import path, include
-from simple_crud.views import main_page
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(('apps.measurements.urls', 'api'), namespace='api')),
-    path('favicon.ico', lambda x: HttpResponse()),
-    path('', main_page, name='mainpage'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
+    path('v1/', include(('apps.measurements.api_urls_v1', 'latest_api')), name='latest_api'),
+]
